@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
 import style from "./MovieDetails.module.scss";
-import { useParams } from "react-router-dom";
-import { Outlet } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams, Outlet, Link } from "react-router-dom";
+
 import { fetchMovies, API_KEY } from "../../functions/api";
-import {} from "react-router-dom";
 
 const MovieDetails = () => {
-  const [details, setDetails] = useState([]);
+  const { movieId } = useParams();
+  const URL = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`;
 
-  const queryParams = useParams();
-  const id = queryParams.movieId;
-  const URL = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
+  const [details, setDetails] = useState({});
 
   useEffect(() => {
     const getDetails = async () => {

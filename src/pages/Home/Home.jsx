@@ -17,8 +17,8 @@ const Home = () => {
 
     if (response) {
       setLoader(false);
-      const trending = [...response.results];
-      return trending.map((movie) => ({
+
+      return response.results.map((movie) => ({
         title: movie.title,
         id: movie.id,
       }));
@@ -28,12 +28,11 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      const response = await fetchTrendingMovies();
-      setMovies(response);
+    const fetchData = async () => {
+      const trendingMovies = await fetchTrendingMovies();
+      setMovies(trendingMovies);
     };
-    fetchMovies();
-    // eslint-disable-next-line
+    fetchData();
   }, []);
 
   return (
@@ -44,8 +43,6 @@ const Home = () => {
           {loader ? (
             <Loader />
           ) : (
-            movies &&
-            movies.length &&
             movies.map(({ id, title }) => (
               <li key={id}>
                 <Link className={style.link} to={`/movies/${id}`}>

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import Loader from "../../components/Loader/Loader";
-import { API_KEY } from "../../functions/api";
+import { API_KEY, fetchMovies } from "../../functions/api";
 
 const Reviews = () => {
   const [loader, setLoader] = useState(false);
@@ -14,19 +13,20 @@ const Reviews = () => {
     const getReviews = async () => {
       setLoader(true);
       try {
-        const response = await axios.get(URL);
-        if (response.data.results) {
-          const parsedReviews = response.data.results.map((review) => ({
+        const response = await fetchMovies(URL);
+        if (response) {
+          const parsedReviews = response.results.map((review) => ({
             content: review.content,
             author: review.author,
             id: review.id,
           }));
           setReviews(parsedReviews);
         } else {
-          throw new Error("Error fetching reviews");
+          throw new Error("No reviews found");
         }
       } catch (error) {
         console.error("Error fetching reviews:", error);
+        setReviews([]);
       } finally {
         setLoader(false);
       }
@@ -45,7 +45,7 @@ const Reviews = () => {
           reviews.map(({ id, author, content }) => (
             <li style={{ listStyle: "circle" }} key={id}>
               <h3>Author: {author}</h3>
-              <p dangerouslySetInnerHTML={{ __html: content }}></p>
+              <p>{content}</p>
             </li>
           ))
         ) : (
