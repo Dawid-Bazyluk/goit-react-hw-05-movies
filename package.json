@@ -11,11 +11,15 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "axios": "^1.7.2",
     "glob": "^10.4.1",
+    "html-react-parser": "^5.1.10",
+    "notiflix": "^3.2.7",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.23.1",
+    "react-loader-spinner": "^6.1.6",
+    "react-router-dom": "^6.24.0",
     "rimraf": "^5.0.7"
   },
   "devDependencies": {
