@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import css from "./Home.module.scss";
+import style from "./Home.module.scss";
 import { Link } from "react-router-dom";
 import { fetchMovies } from "../../functions/api";
 import { API_KEY } from "../../functions/api";
@@ -48,7 +48,7 @@ const Home = () => {
             movies.length &&
             movies.map(({ id, title }) => (
               <li key={id}>
-                <Link className={css.link} to={`/movies/${id}`}>
+                <Link className={style.link} to={`/movies/${id}`}>
                   <p>{title}</p>
                 </Link>
               </li>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import css from "./MovieDetails.module.scss";
+import style from "./MovieDetails.module.scss";
 import { useParams } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -23,10 +23,10 @@ const MovieDetails = () => {
 
   return (
     <>
-      <section className={css.wrapper}>
+      <section className={style.wrapper}>
         {details.poster_path && (
           <img
-            className={css.poster}
+            className={style.poster}
             src={
               details.poster_path
                 ? `https://image.tmdb.org/t/p/w500${details.poster_path}`
@@ -36,7 +36,7 @@ const MovieDetails = () => {
           />
         )}
         <article>
-          <h2 className={css.title}>{details.title}</h2>
+          <h2 className={style.title}>{details.title}</h2>
           <ul>
             <li>
               <h3> User rating: </h3>
@@ -51,15 +51,15 @@ const MovieDetails = () => {
               )}
             </li>
           </ul>
-          <div className={css.overview}>
-            <h3 className={css.overviewTitle}>Overview</h3>
+          <div className={style.overview}>
+            <h3 className={style.overviewTitle}>Overview</h3>
             <p>{details.overview}</p>
           </div>
         </article>
       </section>
       <section>
-        <h3 className={css.additional}>Additional information</h3>
-        <div className={css.btn}>
+        <h3 className={style.additional}>Additional information</h3>
+        <div className={style.btn}>
           <Link to="cast">
             <button type="button">Cast</button>
           </Link>

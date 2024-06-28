@@ -10,11 +10,9 @@ const Reviews = lazy(() => import("./components/Reviews/Reviews"));
 
 const App = () => {
   return (
-    <div>
-      <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div>
         <Header />
-      </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/movies" element={<Movies />} />
@@ -24,8 +22,8 @@ const App = () => {
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-      </Suspense>
-    </div>
+      </div>
+    </Suspense>
   );
 };
 

@@ -1,4 +1,4 @@
-import css from "./Movies.module.scss";
+import style from "./Movies.module.scss";
 import { useState } from "react";
 import { fetchMovies } from "../../functions/api";
 import Loader from "../../components/Loader/Loader";
@@ -15,7 +15,7 @@ const Movies = () => {
     setIsLoading(true);
     event.preventDefault();
     event.currentTarget.reset();
-    if (value.trim() === "") {
+    if (value === "") {
       setIsLoading(false);
       return Notify.info("Please provide a query");
     }
@@ -72,16 +72,16 @@ const Movies = () => {
         onChange={handleChange}
       />
       <button type="submit">Search</button>
-      <ul className={css.movieList}>
+      <ul className={style.movieList}>
         {isLoading ? (
           <Loader />
         ) : (
           movies.length !== 0 &&
           movies.map((movie) => (
-            <li className={css.listEl} key={movie.movieId}>
-              <Link className={css.link} to={`/movies/${movie.movieId}`}>
+            <li className={style.listEl} key={movie.movieId}>
+              <Link className={style.link} to={`/movies/${movie.movieId}`}>
                 <p>{movie.movieTitle}</p>
-                <p className={css.date}>{movie.releaseDate} </p>
+                <p className={style.date}>{movie.releaseDate} </p>
               </Link>
             </li>
           ))
